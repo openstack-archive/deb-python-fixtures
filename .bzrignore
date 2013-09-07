@@ -1,0 +1,8 @@
+TAGS
+tags
+lib/testtools
+MANIFEST
+dist
+.testrepository
+__pycache__
+fixtures.egg-info

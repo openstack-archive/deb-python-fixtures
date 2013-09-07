@@ -1,0 +1,261 @@
+----------------------
+fixtures release notes
+----------------------
+
+
+NEXT
+~~~~
+
+0.3.14
+~~~~~~
+
+CHANGES
+-------
+
+* ``FakePopen`` can now override the returncode attribute.
+  (Robert Collins)
+
+0.3.13
+~~~~~~
+
+CHANGES
+-------
+
+* Documentation hopefully covers ``TestWithFixtures`` a little better.
+  (Robert Collins, #1102688)
+
+* ``FakePopen`` now accepts all the parameters available in Python 2.7.
+  (Robert Collins)
+
+* ``FakePopen`` now only passes parameters to the get_info routine if the
+  caller supplied them. (Robert Collins)
+
+* ``setup.py`` now lists the ``testtools`` dependency which was missing.
+  (Robert Collins, #1103823)
+
+0.3.12
+~~~~~~
+
+Brown bag fix up of StringStream from 0.3.11.
+
+0.3.11
+~~~~~~
+
+CHANGES
+-------
+
+* ``DetailStream`` was ambiguous about whether it handled bytes or characters,
+  which matters a lot for Python3. It now is deprecated with ByteStream and
+  StringStream replacing it. (Robert Collins)
+
+* Fixtures is now Python3 compatible. (Robert Collins)
+
+* ``FakeLogger`` has been split out into a ``LogHandler`` fixture that can
+  inject arbitrary handlers, giving more flexability. (Jonathan Lange)
+
+* pydoc is recommended as a source of info about fixtures.
+  (Robert Collins, #812845)
+
+* The docs for fixtures have been updated to cover the full API.
+  (Robert Collins, #1071649)
+
+0.3.10
+~~~~~~
+
+New ``DetailStream`` fixture to add file-like object content to testtools
+details, cleanup logic factored out into a CallMany class.
+
+CHANGES:
+
+* Add ``join`` method to ``TempDir`` to more readily get paths relative
+  to a temporary directory.  (Jonathan Lange)
+
+* Factor out new ``CallMany`` class to isolate the cleanup logic.
+  (Robert Collins)
+
+* New ``DetailStream`` fixture to add file-like object content to testtools
+  details. This allows for easy capture of sys.stdout and sys.stderr for
+  example. (Clark Boylan)
+
+0.3.9
+~~~~~
+
+New ``TempHomeDir`` fixture and more log output included in ``FakeLogger``.
+
+CHANGES:
+
+* New TempHomeDir fixture to create and activate a temporary home directory.
+  (James Westby)
+
+* ``FakeLogger`` now includes the output from python logging - the .output
+  attribute as a content object in getDetails, so the logs will automatically
+  be included in failed test output (or other similar circumstances).
+  (Francesco Banconi)
+
+0.3.8
+~~~~~
+
+Simpler names for a number of fixtures, and two new fixtures NestedTempfile and
+Timeout. See the manual for more information.
+
+CHANGES:
+
+* EnvironmentVariable now upcalls via super().
+  (Jonathan Lange, #881120)
+
+* EnvironmentVariableFixture, LoggerFixture, PopenFixture renamed to
+  EnvironmentVariable, FakeLogger and FakePopen respectively. All are still
+  available under their old, deprecated names.  (Jonathan Lange, #893539)
+
+* gather_details fixed to handle the case where two child fixtures have the
+  same detail name. (Jonathan Lange, #895652)
+
+* ``NestedTempfile`` which will change the default path for tempfile temporary
+  file / directory creation. (Gavin Panella)
+
+* New Timeout fixture.  (Martin Pool)
+
+0.3.7
+~~~~~
+
+CHANGES:
+
+* New fixture LoggerFixture which replaces a logging module logger.
+  (Free Ekanayaka)
+
+* On Python 2.7 and above the _fixtures tests are no longer run twice.
+  (Robert Collins)
+
+* Python 3 now supported. (Jonathan Lange, #816665)
+
+* ``TempDir`` supports creating the temporary directory under a specific path.
+  An example of where this is useful would be if you have some specific long
+  lived temporary items and need to avoid running afoul of tmpreaper.
+  (Robert Collins, #830757)
+
+* Updated to match the changed ``gather_details`` API in testtools. See #801027.
+  This is an incompatible change in testtools and requires testtools 0.9.12.
+  (Jonathan Lange)
+
+0.3.6
+~~~~~
+
+Another small API break - sorry. Fixture.getDetails no longer returns the
+internal details dict (self._details). Access that directly if needed. It now
+looks for details in used fixtures and returns those as well as details added
+directly.
+
+CHANGES:
+
+* Details from child fixtures for both Fixture and TestWithFixtures no longer
+  quash same-named details if testtools 0.9.11 is available (for the
+  gather_details helper).
+  (Gavin Panella, #796253)
+
+* Fixture.getDetails will now return all the details of fixtures added using
+  useFixture. (RobertCollins, #780806)
+
+* New fixture ``PackagePathEntry`` which patches the path of an existing
+  package, allowing importing part of it from another directory.
+  (Robert Collins)
+
+* New fixture ``PythonPathEntry`` which patches sys.path.
+  (Robert Collins, #737503)
+
+* Test failure on some setups in
+  test_cleanUp_raise_first_false_callscleanups_returns_exceptions.
+  (Gavin Panella, #796249)
+
+* Testtools 0.9.8 is now a minimum requirement.
+  (Gavin Panella)
+
+0.3.5
+~~~~~
+
+CHANGES:
+
+* New fixture ``MonkeyPatch`` which patches (or deletes) an existing attribute
+  and restores it afterwards. (Robert Collins)
+
+* New fixture ``PythonPackage`` which manages a temporary python package.
+  (Robert Collins)
+
+* New fixture ``TempDir`` which manages a temporary directory. (Robert Collins)
+
+0.3.4
+~~~~~
+
+CHANGES:
+
+* Fixture now supports ``addDetail`` and provides a``getDetails`` call
+  compatible with the ``testtools.TestCase`` calls. (Robert Collins, #640119)
+
+* New helper ``MethodFixture`` for wrapping an object similarly to
+  ``FunctionFixture`` (Robert Collins)
+
+0.3.3
+~~~~~
+
+Fixtures now have a ``useFixture`` method as well, making nesting of fixtures
+trivial.
+
+CHANGES:
+
+* New method ``Fixture.useFixture`` allowing fixtures to compose other
+  fixtures. (Robert Collins)
+
+0.3.2
+~~~~~
+
+Point release adding new EnvironmentVariableFixture for controlling environment
+variables.
+
+CHANGES:
+
+* New EnvironmentVariableFixture which can set or unset environment variables.
+  (Robert Collins)
+
+0.3.1
+~~~~~
+
+Point release adding experimental PopenFixture.
+
+CHANGES:
+
+* Experimental PopenFixture providing a test double for testing code that runs
+  external processes. (Robert Collins)
+
+0.3
+~~~
+
+This release slightly breaks compatability in order to get the cleanUp API
+really solid : it now will report correctly with testtools 0.9.7, and 
+generally does the right thing by default. Apologies to anyone affected by
+this churn, but I felt the cleanness of the API was worth it.
+
+CHANGES:
+
+* When multiple exceptions are being raised from cleanUp, MultipleExceptions
+  is used to report them all. This is preferentially imported from testtools
+  and failing that defined locally. See testtools 0.9.7 for its use.
+  (Robert Collins)
+
+0.2
+~~~
+
+CHANGES:
+
+* Exceptions raised during cleanup are no longer silently swallowed. They
+  are returned in a list by default, or the first one is raised if raise_first
+  is supplied. The TestCase glue code passes raise_first to cleanUp.
+  (Robert Collins, #629032)
+
+0.1
+~~~
+
+CHANGES:
+
+* Created project. The primary interfaces are
+  ``fixtures.TestWithFixtures`` and ``fixtures.Fixture``.
+  Documentation is primarily in README.  (Robert Collins)
+
