@@ -2,25 +2,34 @@ Source: python-fixtures
 Section: python
 Priority: optional
 Maintainer: Robert Collins <robertc@robertcollins.net>
-Uploaders: Thomas Goirand <zigo@debian.org>
+Uploaders: Thomas Goirand <zigo@debian.org>,
 Build-Depends: debhelper (>= 9),
                dh-python,
+               openstack-pkg-tools,
                python-all,
+               python-pbr (>= 0.11),
                python-setuptools,
+               python-sphinx,
                python3-all,
-               python3-setuptools
+               python3-pbr (>= 0.11),
+               python3-setuptools,
 Build-Depends-Indep: python-docutils,
+                     python-mock,
                      python-nose,
-                     python-testtools (>= 0.9.11),
-                     python3-testtools
-Standards-Version: 3.9.4
+                     python-testtools,
+                     python3-mock,
+                     python3-testtools,
+Standards-Version: 3.9.6
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=openstack/python-fixtures.git
 Vcs-Git: git://anonscm.debian.org/openstack/python-fixtures.git
 Homepage: http://pypi.python.org/pypi/fixtures
 
 Package: python-fixtures
 Architecture: all
-Depends: python-testtools (>= 0.9.11), ${misc:Depends}, ${python:Depends}
+Depends: python-pbr (>= 0.11),
+         python-testtools,
+         ${misc:Depends},
+         ${python:Depends},
 Description: PyUnit extension for defining test fixtures outside of test cases - Python 2.x
  A PyUnit extension for defining test fixtures outside of test cases. Each
  fixture encapsulates creating, reusing and freeing some state - be that a
@@ -35,7 +44,10 @@ Description: PyUnit extension for defining test fixtures outside of test cases -
 
 Package: python3-fixtures
 Architecture: all
-Depends: python3-testtools (>= 0.9.11), ${misc:Depends}, ${python3:Depends}
+Depends: python3-pbr (>= 0.11),
+         python3-testtools,
+         ${misc:Depends},
+         ${python3:Depends},
 Description: PyUnit extension for defining test fixtures outside of test cases - Python 3.x
  A PyUnit extension for defining test fixtures outside of test cases. Each
  fixture encapsulates creating, reusing and freeing some state - be that a
