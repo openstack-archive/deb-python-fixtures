@@ -1,0 +1,85 @@
+python-fixtures (1.3.0-1) experimental; urgency=low
+
+  * New upstream release.
+  * Removed the tarball folder config in debian/gbp.conf.
+  * Removed python-support as build-depends-indep, switched from python to
+    python-all as build-depends.
+  * Added dh-python as build-depends.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 01 Jul 2015 23:26:02 +0200
+
+python-fixtures (0.3.14-1) unstable; urgency=low
+
+  * New upstream release.
+  * Switched to dh short style instead of CDBS.
+  * Added support for Python 3.
+  * Added a debian/gbp.conf, and some VCS fields.
+  * Now running the nose tests.
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 07 Sep 2013 10:46:53 +0800
+
+python-fixtures (0.3.12-0.2) unstable; urgency=low
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 11 May 2013 04:54:53 +0000
+
+python-fixtures (0.3.12-0.1) experimental; urgency=low
+
+  * Non-maintainer upload (with current maintainer approval).
+  * Uploading to experimental.
+  * New upstream release.
+  * Now using compat and debhelper 9.
+  * Using parsable format 1.0 for debian/copyright.
+  * Now using source format 3.0 (quilt).
+  * Build-depends on python (>= 2.6.6-3~), remove python-dev build-depends.
+  * Standard-Version is now 3.9.4 (no change but the above).
+  * Added a debian/watch file.
+  * Disabled test suite as it fails.
+  * Added a homepage field.
+  * Removes /usr/share/cdbs/1/rules/simple-patchsys.mk since it's now
+    deprecated.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 15 Feb 2013 05:23:19 +0000
+
+python-fixtures (0.3.6-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix "FTBFS: AttributeError: 'BrokenFixture' object has no attribute
+    'items'": add patch from Emanuele Aina (add missing calls to
+    getDetails()).
+    (Closes: #665018)
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 06 Jul 2012 16:48:36 -0600
+
+python-fixtures (0.3.6-1) unstable; urgency=low
+
+  * New upstream release.
+  * Runtime dependency on testtools due to upstream change.
+
+ -- Robert Collins <robertc@robertcollins.net>  Thu, 23 Jun 2011 20:40:06 +1200
+
+python-fixtures (0.3.5-1) unstable; urgency=low
+
+  * First debian upload. Closes: #602685
+  * New upstream release.
+
+ -- Robert Collins <robertc@robertcollins.net>  Sun, 07 Nov 2010 19:50:46 +1300
+
+python-fixtures (0.3.4-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Robert Collins <robertc@robertcollins.net>  Tue, 26 Oct 2010 09:31:20 +1300
+
+python-fixtures (0.3-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Robert Collins <robertc@robertcollins.net>  Sat, 18 Sep 2010 15:07:46 +1200
+
+python-fixtures (0.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Robert Collins <robertc@robertcollins.net>  Sun, 12 Sep 2010 10:53:42 +1200

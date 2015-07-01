@@ -1,0 +1,49 @@
+Source: python-fixtures
+Section: python
+Priority: optional
+Maintainer: Robert Collins <robertc@robertcollins.net>
+Uploaders: Thomas Goirand <zigo@debian.org>
+Build-Depends: debhelper (>= 9),
+               dh-python,
+               python-all,
+               python-setuptools,
+               python3-all,
+               python3-setuptools
+Build-Depends-Indep: python-docutils,
+                     python-nose,
+                     python-testtools (>= 0.9.11),
+                     python3-testtools
+Standards-Version: 3.9.4
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=openstack/python-fixtures.git
+Vcs-Git: git://anonscm.debian.org/openstack/python-fixtures.git
+Homepage: http://pypi.python.org/pypi/fixtures
+
+Package: python-fixtures
+Architecture: all
+Depends: python-testtools (>= 0.9.11), ${misc:Depends}, ${python:Depends}
+Description: PyUnit extension for defining test fixtures outside of test cases - Python 2.x
+ A PyUnit extension for defining test fixtures outside of test cases. Each
+ fixture encapsulates creating, reusing and freeing some state - be that a
+ temporary directory on disk, SQL server connection, or just a particular
+ object graph. This is extremely useful for testing and general resource
+ management.
+ .
+ Fixtures ships with the base class, unittest glue and a number of precanned
+ concrete fixtures.
+ .
+ This package provides the Python 2.x module.
+
+Package: python3-fixtures
+Architecture: all
+Depends: python3-testtools (>= 0.9.11), ${misc:Depends}, ${python3:Depends}
+Description: PyUnit extension for defining test fixtures outside of test cases - Python 3.x
+ A PyUnit extension for defining test fixtures outside of test cases. Each
+ fixture encapsulates creating, reusing and freeing some state - be that a
+ temporary directory on disk, SQL server connection, or just a particular
+ object graph. This is extremely useful for testing and general resource
+ management.
+ .
+ Fixtures ships with the base class, unittest glue and a number of precanned
+ concrete fixtures.
+ .
+ This package provides the Python 3.x module.
