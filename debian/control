@@ -16,8 +16,10 @@ Build-Depends: debhelper (>= 9),
 Build-Depends-Indep: python-docutils,
                      python-mock,
                      python-nose,
+                     python-six,
                      python-testtools,
                      python3-mock,
+                     python3-six,
                      python3-testtools,
 Standards-Version: 3.9.6
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=openstack/python-fixtures.git
@@ -27,6 +29,7 @@ Homepage: http://pypi.python.org/pypi/fixtures
 Package: python-fixtures
 Architecture: all
 Depends: python-pbr (>= 0.11),
+         python-six,
          python-testtools,
          ${misc:Depends},
          ${python:Depends},
@@ -45,6 +48,7 @@ Description: PyUnit extension for defining test fixtures outside of test cases -
 Package: python3-fixtures
 Architecture: all
 Depends: python3-pbr (>= 0.11),
+         python3-six,
          python3-testtools,
          ${misc:Depends},
          ${python3:Depends},
