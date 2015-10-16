@@ -1,2 +1,2 @@
 version=3
-http://pypi.python.org/packages/f/fixtures/fixtures-(.*)\.tar.gz
+https://github.com/testing-cabal/fixtures/tags .*/(\d[\d\.]+)\.tar\.gz
