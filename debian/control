@@ -24,7 +24,7 @@ Build-Depends-Indep: python-docutils,
 Standards-Version: 3.9.6
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=openstack/python-fixtures.git
 Vcs-Git: git://anonscm.debian.org/openstack/python-fixtures.git
-Homepage: http://pypi.python.org/pypi/fixtures
+Homepage: https://pypi.python.org/pypi/fixtures
 
 Package: python-fixtures
 Architecture: all
