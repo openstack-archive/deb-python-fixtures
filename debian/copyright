@@ -1,7 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: fixtures
 Upstream-Contact: Robert Collins <robertc@robertcollins.net>
-Source: http://pypi.python.org/pypi/fixtures
+Source: https://pypi.python.org/pypi/fixtures
 
 Files: debian/*
 Copyright: (c) 2010-2012, Robert Collins <robertc@robertcollins.net>
