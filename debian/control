@@ -3,6 +3,7 @@ Section: python
 Priority: optional
 Maintainer: Robert Collins <robertc@robertcollins.net>
 Uploaders: Thomas Goirand <zigo@debian.org>,
+           Ivan Udovichenko <iudovichenko@mirantis.com>,
 Build-Depends: debhelper (>= 9),
                dh-python,
                openstack-pkg-tools,
@@ -14,14 +15,14 @@ Build-Depends: debhelper (>= 9),
                python3-pbr (>= 0.11),
                python3-setuptools,
 Build-Depends-Indep: python-docutils,
-                     python-mock,
+#                     python-mock,
                      python-nose,
                      python-six,
                      python-testtools,
-                     python3-mock,
+#                     python3-mock,
                      python3-six,
                      python3-testtools,
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Vcs-Browser: https://anonscm.debian.org/cgit/openstack/python-fixtures.git/
 Vcs-Git: https://anonscm.debian.org/git/openstack/python-fixtures.git
 Homepage: https://pypi.python.org/pypi/fixtures
