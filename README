@@ -25,7 +25,7 @@ compatible test cases easy and straight forward.
 Dependencies
 ============
 
-* Python 2.6+
+* Python 2.6+, or 3.3+
   This is the base language fixtures is written in and for.
 
 * pbr
@@ -56,7 +56,7 @@ Why Fixtures
 
 Standard Python unittest.py provides no obvious method for making and reusing
 state needed in a test case other than by adding a method on the test class.
-This scales poorly - complex helper functions propogating up a test class
+This scales poorly - complex helper functions propagating up a test class
 hierarchy is a regular pattern when this is done. Mocking while a great tool
 doesn't itself prevent this (and helpers to mock complex things can accumulate
 in the same way if placed on the test class).
@@ -146,6 +146,14 @@ fixture implementations to Fixture::
   >>> server = MyServer()
   >>> fixture = fixtures.MethodFixture(server, server.start, server.stop)
 
+You can also combine existing fixtures using ``CompoundFixture``::
+
+  >>> noddy_with_log = fixtures.CompoundFixture([NoddyFixture(),
+  ...                                            WithLog()])
+  >>> with noddy_with_log as x:
+  ...     print (x.fixtures[0].frobnozzle)
+  42
+
 The Fixture API
 ===============
 
@@ -230,7 +238,7 @@ The examples above used ``_setUp`` rather than ``setUp`` because the base
 class implementation of ``setUp`` acts to reduce the chance of leaking
 external resources if an error is raised from ``_setUp``. Specifically,
 ``setUp`` contains a try:/except: block which catches all exceptions, captures
-any registered detail objects, and calls ``self.cleanUp`` before propogating
+any registered detail objects, and calls ``self.cleanUp`` before propagating
 the error. As long as you take care to register any cleanups before calling
 the code that may fail, this will cause them to be cleaned up. The captured
 detail objects are provided to the args of the raised exception.
@@ -385,7 +393,7 @@ MockPatchMultiple
 
 Adapts ``mock.patch.multiple`` to be used as a Fixture.
 
-  >>> fixture = fixtures.MockPatch('subprocess.Popen', returncode=3)
+  >>> fixture = fixtures.MockPatchMultiple('subprocess.Popen', returncode=3)
 
 MonkeyPatch
 +++++++++++
@@ -395,6 +403,9 @@ Control the value of a named python attribute.
   >>> def fake_open(path, mode):
   ...     pass
   >>> fixture = fixtures.MonkeyPatch('__builtin__.open', fake_open)
+
+Note that there are some complexities when patching methods - please see the
+API documentation for details.
 
 NestedTempfile
 ++++++++++++++

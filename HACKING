@@ -38,7 +38,11 @@ Releasing
 
 1. Add a version to NEWS.
 
-1. commit, tag.
+1. commit, tag::
+
+    git commit -am "Release X.Y.Z"
+    git tag -m "Release X.Y.Z" X.Y.Z
+    git push --tags origin master:master
 
 1. Upload to pypi, signed.
 

@@ -14,6 +14,7 @@
 # limitations under that license.
 
 __all__ = [
+    'CompoundFixture',
     'Fixture',
     'FunctionFixture',
     'MethodFixture',
@@ -27,7 +28,6 @@ import sys
 import six
 from testtools.compat import (
     advance_iterator,
-    reraise,
     )
 from testtools.helpers import try_import
 
@@ -115,7 +115,7 @@ class Fixture(object):
             if a single exception is raised, it is reraised after all the
             cleanUps have run. If multiple exceptions are raised, they are
             all wrapped into a MultipleExceptions object, and that is reraised.
-            Thus, to cach a specific exception from cleanUp, you need to catch
+            Thus, to catch a specific exception from cleanUp, you need to catch
             both the exception and MultipleExceptions, and then check within
             a MultipleExceptions instance for the type you're catching.
         :return: A list of the exc_info() for each exception that occured if
@@ -157,7 +157,7 @@ class Fixture(object):
             self._cleanups()
         finally:
             self._remove_state()
-        return False # propogate exceptions from the with body.
+        return False  # propagate exceptions from the with body.
 
     def getDetails(self):
         """Get the current details registered with the fixture.
@@ -206,7 +206,7 @@ class Fixture(object):
             errors = [err] + self.cleanUp(raise_first=False)
             try:
                 raise SetupError(details)
-            except SetupError as e:
+            except SetupError:
                 errors.append(sys.exc_info())
             if issubclass(err[0], Exception):
                 raise MultipleExceptions(*errors)
@@ -381,12 +381,12 @@ class MethodFixture(Fixture):
         if setup is None:
             setup = getattr(obj, 'setUp', None)
             if setup is None:
-                setup = lambda:None
+                setup = lambda: None
         self._setup = setup
         if cleanup is None:
             cleanup = getattr(obj, 'tearDown', None)
             if cleanup is None:
-                cleanup = lambda:None
+                cleanup = lambda: None
         self._cleanup = cleanup
         if reset is None:
             reset = getattr(obj, 'reset', None)
@@ -404,3 +404,22 @@ class MethodFixture(Fixture):
             super(MethodFixture, self).reset()
         else:
             self._reset()
+
+
+class CompoundFixture(Fixture):
+    """A fixture that combines many fixtures.
+
+    :ivar fixtures: The list of fixtures that make up this one. (read only).
+    """
+
+    def __init__(self, fixtures):
+        """Construct a fixture made of many fixtures.
+
+        :param fixtures: An iterable of fixtures.
+        """
+        super(CompoundFixture, self).__init__()
+        self.fixtures = list(fixtures)
+
+    def _setUp(self):
+        for fixture in self.fixtures:
+            self.useFixture(fixture)

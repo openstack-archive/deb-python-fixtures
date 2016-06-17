@@ -14,7 +14,9 @@
 # limitations under that license.
 
 from logging import StreamHandler, getLogger, INFO, Formatter
+import sys
 
+import six
 from testtools.compat import _u
 
 from fixtures import Fixture
@@ -61,6 +63,12 @@ class LogHandler(Fixture):
             self.addCleanup(logger.removeHandler, self.handler)
 
 
+class StreamHandlerRaiseException(StreamHandler):
+    """Handler class that will raise an exception on formatting errors."""
+    def handleError(self, record):
+        six.reraise(*sys.exc_info())
+
+
 class FakeLogger(Fixture):
     """Replace a logger and capture its output."""
 
@@ -98,7 +106,7 @@ class FakeLogger(Fixture):
         name = _u("pythonlogging:'%s'") % self._name
         output = self.useFixture(StringStream(name)).stream
         self._output = output
-        handler = StreamHandler(output)
+        handler = StreamHandlerRaiseException(output)
         if self._format:
             formatter = (self._formatter or Formatter)
             handler.setFormatter(formatter(self._format, self._datefmt))

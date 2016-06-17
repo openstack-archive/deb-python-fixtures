@@ -6,6 +6,40 @@ fixtures release notes
 NEXT
 ~~~~
 
+3.0.0
+~~~~~
+
+* Monkeypatching of callables has been thoroughly overhauled: there were deep
+  flaws in usability because staticmethod and classmethods are actually
+  descriptors. (Andrew Laski, Robert Collins)
+
+2.0
+~~~
+
+* Monkeypatching of staticmethod's now works correctly on Python 2 and 3.
+  This is an API break as previously they were bound as instancemethods's
+  and thus any working patches need to have their first parameter (self)
+  dropped. (Andrew Laski)
+
+* New class ``CompoundFixture`` added, allowing fixtures to be combined.
+  (Jonathan Lange)
+
+* Support for Python 3.2 dropped (as pip and setuptools have).
+  (Robert Collins)
+
+1.4
+~~~
+
+* ``fixtures`` now has CI testing via Travis, no more manual work.
+  (Robert Collins)
+
+* ``mock`` is used in preference to ``unittest.mock`` now, as the rolling
+  backport has significant bugfixes over older but still supported CPython
+  stdlib versions. (Robert Collins)
+
+* ``fixtures.FakeLogger`` now detects incorrectly formatted log messages.
+  (John Villalovos, #1503049)
+
 1.3.1
 ~~~~~
 
@@ -22,7 +56,7 @@ NEXT
 * Fixture.setUp should no longer be overridden in subclasses. Instead
   override _setUp. This permits the Fixture base class to detect failures
   during _setUp and trigger any registered cleanups, attach any details
-  to the failure exception and propogate that to callers. Overriding of
+  to the failure exception and propagate that to callers. Overriding of
   setUp is still supported: this adds a new interface for simpler
   implementation of the contract of a fixture.
   (Robert Collins, #1456361, #1456353)
