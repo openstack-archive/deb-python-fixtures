@@ -8,6 +8,7 @@ python-fixtures (3.0.0-1) experimental; urgency=medium
 
   [ Ivan Udovichenko ]
   * Package new version.
+  * d/control: Add myself to uploaders list.
 
  -- Ivan Udovichenko <iudovichenko@mirantis.com>  Fri, 17 Jun 2016 15:05:58 +0300
 
