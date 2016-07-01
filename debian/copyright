@@ -3,13 +3,13 @@ Upstream-Name: fixtures
 Upstream-Contact: Robert Collins <robertc@robertcollins.net>
 Source: https://pypi.python.org/pypi/fixtures
 
-Files: debian/*
-Copyright: (c) 2010-2012, Robert Collins <robertc@robertcollins.net>
-	(c) 2013, Thomas Goirand <zigo@debian.org>
-License: Apache-2.0-or-BSD
-
 Files: *
 Copyright: (c) 2010-2013, Robert Collins <robertc@robertcollins.net>
+License: Apache-2.0-or-BSD
+
+Files: debian/*
+Copyright: (c) 2010-2012, Robert Collins <robertc@robertcollins.net>
+	(c) 2013-2016, Thomas Goirand <zigo@debian.org>
 License: Apache-2.0-or-BSD
 
 License: Apache-2.0-or-BSD
