@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Robert Collins <robertc@robertcollins.net>
 Uploaders: Thomas Goirand <zigo@debian.org>,
            Ivan Udovichenko <iudovichenko@mirantis.com>,
-Build-Depends: debhelper (>= 9),
+Build-Depends: debhelper (>= 10),
                dh-python,
                openstack-pkg-tools (>= 52~),
                python-all,
